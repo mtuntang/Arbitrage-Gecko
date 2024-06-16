@@ -15,18 +15,3 @@ export interface FlattenedTicker {
     base: string;
     target: string;
 }
-
-export interface ArbitrageOpportunity {
-    baseCoin: string;
-    intermediateCoin: string;
-    targetCoin: string;
-    exchanges: {
-        buyExchange: string;
-        sellExchange: string;
-        finalSellExchange: string;
-    };
-    buyPrice: number;
-    sellIntermediatePrice: number;
-    sellTargetPrice: number;
-    profit: number;
-}

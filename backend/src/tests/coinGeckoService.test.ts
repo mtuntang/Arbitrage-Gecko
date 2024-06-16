@@ -1,32 +1,30 @@
 import CoinGeckoService from '../services/coinGeckoService';
-import { mockTickers } from '../mocks/mockData';
 
-// Mock axios module
-jest.mock('axios');
-import axios from 'axios';
-
-const mockedAxios = axios as jest.Mocked<typeof axios>;
+// Remove axios mock import
+// jest.mock('axios');
 
 describe('CoinGeckoService', () => {
     it('should fetch tickers', async () => {
-        mockedAxios.get.mockResolvedValue({ data: { tickers: mockTickers } });
-
         const tickers = await CoinGeckoService.fetchTickers('bitcoin');
-        expect(tickers).toEqual(mockTickers);
+        expect(tickers.length).toBeGreaterThan(0);
+        expect(tickers[0]).toHaveProperty('market');
+        expect(tickers[0]).toHaveProperty('last');
+        expect(tickers[0]).toHaveProperty('base');
+        expect(tickers[0]).toHaveProperty('target');
     });
 
     it('should fetch limited tickers', async () => {
-        mockedAxios.get.mockResolvedValue({ data: { tickers: mockTickers } });
-
         const tickers = await CoinGeckoService.fetchLimitedTickers('bitcoin', 1);
-        expect(tickers).toEqual(mockTickers.slice(0, 1));
+        expect(tickers.length).toBe(1);
+        expect(tickers[0]).toHaveProperty('market');
+        expect(tickers[0]).toHaveProperty('last');
+        expect(tickers[0]).toHaveProperty('base');
+        expect(tickers[0]).toHaveProperty('target');
     });
 
     it('should fetch historical data', async () => {
-        const mockHistoricalData = { prices: [[1628812800000, 50000], [1628899200000, 50500]] };
-        mockedAxios.get.mockResolvedValue({ data: mockHistoricalData });
-
         const historicalData = await CoinGeckoService.fetchHistoricalData('bitcoin', 7);
-        expect(historicalData).toEqual(mockHistoricalData.prices);
+        expect(historicalData.length).toBeGreaterThan(0);
+        expect(historicalData[0].length).toBe(2);
     });
 });

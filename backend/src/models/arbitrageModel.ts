@@ -1,6 +1,5 @@
 import CoinGeckoService from '../services/coinGeckoService';
 import { Ticker, FlattenedTicker, ArbitrageOpportunity } from './interfaces';
-import { stableCoins, coins} from '../utils/coinUtils';
 
 const coinIdToSymbol: Record<string, string> = {
   'tether': 'USDT',
@@ -55,7 +54,6 @@ class ArbitrageModel {
   }
 
   private static generatePaths(currentPath: FlattenedTicker[], flattenedBases: Record<string, FlattenedTicker[]>, flattenedIntermediaries: Record<string, FlattenedTicker[]>, coins: string[], stableCoins: string[], numIntermediaries: number, arbitrageOpportunities: FlattenedTicker[][]) {
-    //TODO: Implement backtracking path generation
     let totalLength = 2 + numIntermediaries;
     if (currentPath.length === totalLength) {
       //check if path is profitable, add to arbitrageOpportunities if yes, return if not
@@ -111,6 +109,16 @@ class ArbitrageModel {
     }
 
     return flattened;
+  }
+
+  static async getHistoricalData(coins: string[], days: number): Promise<Record<string, number[][]>> {
+    const historicalData: Record<string, number[][]> = {};
+
+    await Promise.all(coins.map(async (coin) => {
+      historicalData[coin] = await CoinGeckoService.fetchHistoricalData(coin, days);
+    }));
+
+    return historicalData;
   }
 
   private static isProfitablePath(path: FlattenedTicker[]): boolean {
