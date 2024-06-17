@@ -46,7 +46,7 @@ This project is a web-based dashboard that displays the historical values of sev
 **Frontend:**
 - Developed using React and Chart.js to visualize the data.
 - Created a user interface to select cryptocurrencies and view their historical prices.
-- 
+  
 **API Calls:**
 - Historical data and ticker information are fetched from the CoinGecko API.
 
