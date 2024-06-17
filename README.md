@@ -55,13 +55,11 @@ This project is a web-based dashboard that displays the historical values of sev
 The free tier of the CoinGecko API limits the number of API calls to 5-15 per minute depending on global use.This restricts the amount of data that can be fetched and processed, impacting the completeness of the arbitrage suggestions.
 
 ### Stablecoin Data
-
 Since the original goal for the arbitrage is to create trading recommendations in the structure of stable coin -> coin -> coin -> stable coin etc., we need tickers consisting of stable coin-> coin conversions. However, 
 the stable coin data retrieved mostly consists of conversions between stable coins (stable coin -> stable coin). This limits the ability to generate meaningful arbitrage paths involving non-stable cryptocurrencies.
 <br><br>
-With only 100 tickers per API call being returned, there is not enough diversified tickers for stable coin -> coin conversions to generate arbitrage permutations without consistently hitting the rate limit and getting Status 429 errors.
+With only 100 tickers per page or API call being returned, there is not enough diversified tickers for stable coin -> coin conversions to generate arbitrage permutations and making more API calls leads to consistently hitting the rate limit (status 429 errors).
 As such, the arbitrage recommendations is not implemented on the frontend.
-
 
 ### Inconsistent Data
 The API returns data with inconsistent base and target values, sometimes using coin IDs and other times using symbols. One example would be base:'ethereum' and target:'ETH'.
