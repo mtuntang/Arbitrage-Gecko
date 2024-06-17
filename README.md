@@ -60,6 +60,8 @@ the stable coin data retrieved mostly consists of conversions between stable coi
 <br><br>
 With only 100 tickers per page or API call being returned, there is not enough diversified tickers for stable coin -> coin conversions to generate arbitrage permutations and making more API calls leads to consistently hitting the rate limit (status 429 errors).
 As such, the arbitrage recommendations is not implemented on the frontend.
+<br><br>
+Screenshots of the data fetched can be seen in the screenshots folder.
 
 ### Inconsistent Data
 The API returns data with inconsistent base and target values, sometimes using coin IDs and other times using symbols. One example would be base:'ethereum' and target:'ETH'.
