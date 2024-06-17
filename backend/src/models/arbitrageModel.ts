@@ -129,8 +129,6 @@ class ArbitrageModel {
     return formattedData;
   }
 
-
-
   private static isProfitablePath(path: FlattenedTicker[]): boolean {
     // Placeholder method for profitability check
     // Due to API limitations, this method is not fully implemented
