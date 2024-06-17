@@ -19,8 +19,15 @@ class ArbitrageController {
 
     static async getHistoricalData(req: Request, res: Response) {
         try {
-            const { coins, days } = req.body;
-            const historicalData = await ArbitrageModel.getHistoricalData(coins, days);
+            const { coin, days } = req.query;
+            console.log('Received query parameters:', { coin, days });
+
+            // Validate query parameters
+            if (!coin || !days) {
+                return res.status(422).json({ error: 'Missing required parameters' });
+            }
+
+            const historicalData = await ArbitrageModel.getHistoricalData(coin as string, parseInt(days as string));
             res.json(historicalData);
         } catch (error) {
             if (error instanceof Error) {
@@ -30,6 +37,7 @@ class ArbitrageController {
             }
         }
     }
+
 }
 
 export default ArbitrageController;

@@ -25,7 +25,7 @@ class CoinGeckoService {
         vs_currency: 'usd',
         days,
         interval: 'daily',
-        precision: 2
+        precision: 3
       }
     });
     return response.data.prices;
