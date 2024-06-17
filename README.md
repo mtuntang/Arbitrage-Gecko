@@ -70,7 +70,7 @@ The free tier of the CoinGecko API limits the number of API calls to 5-15 per mi
 Since the original goal for the arbitrage is to create trading recommendations in the structure of stable coin -> coin -> coin -> stable coin etc., we need tickers consisting of stable coin-> coin conversions. However, 
 the stable coin data retrieved mostly consists of conversions between stable coins (stable coin -> stable coin). This limits the ability to generate meaningful arbitrage paths involving non-stable cryptocurrencies.
 <br><br>
-With only 100 tickers per page or API call being returned, there is not enough diversified tickers for stable coin -> coin conversions to generate arbitrage permutations and making more API calls leads to consistently hitting the rate limit (status 429 errors).
+With only 100 tickers per page or API call being returned by the free tier of the CoinGecko API, there is not enough diversified tickers for stable coin -> coin conversions to generate arbitrage permutations and making more API calls leads to consistently hitting the rate limit (status 429 errors).
 As such, the arbitrage recommendations is not implemented on the frontend.
 <br><br>
 Screenshots of the data fetched can be seen in the screenshots folder.
