@@ -38,17 +38,29 @@ This project is a web-based dashboard that displays the historical values of sev
 - Fetches arbitrage opportunities based on the current market data: GET /api/arbitrage
 
 ## Approach
+**Code Structure:**
+- Separated frontend and backend functionality to improve scalability and improvements.
+- Used MVC design pattern.
+
 **Backend:**
 - Used Node.js and Express to set up the server.
 - Created services to fetch data from the CoinGecko API.
 - Implemented a model to process the fetched data and calculate arbitrage opportunities.
   
 **Frontend:**
-- Developed using React and Chart.js to visualize the data.
+- Developed using React.js, Chart.js, Tailwind.css to visualize the data.
 - Created a user interface to select cryptocurrencies and view their historical prices.
   
 **API Calls:**
 - Historical data and ticker information are fetched from the CoinGecko API.
+
+**Dashboard**
+Historical data is fetched and then processed in the format of [date, price] before being passed on to a Chart.js component to create a line graph.
+
+**Arbitrage Recommendations:**
+1. Fetch relevant tickers from CoinGeckoAPI
+2. Utilize a backtracking algorithm to generate all permutaions of valid arbitrage paths in the sequence of stable coin -> coin -> stable coin.
+3. Each path is validated for positive profits before being pushed into an array of results.
 
 ## Issues on Arbitrage Recommendations
 ### API Rate Limits
